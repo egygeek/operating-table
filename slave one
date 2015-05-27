@@ -8,10 +8,6 @@
 #define relay_7 8
 #define relay_8 9
 #define m_relay 10
-#define mswitch_1 11
-#define mswitch_2 12
-#define mswitch_3 13
-#define mswitch_4 A0
 
 #define S_HEIGHT_UP 'H'
 #define S_HEIGHT_DOWN 'h'
@@ -39,10 +35,6 @@ void setup()
   pinMode(relay_7,OUTPUT);
   pinMode(relay_8,OUTPUT);
   pinMode(m_relay,OUTPUT);
-  pinMode(mswitch_1,INPUT);
-  pinMode(mswitch_2,INPUT);
-  pinMode(mswitch_3,INPUT);
-  pinMode(mswitch_4,INPUT);
   
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event
@@ -51,8 +43,6 @@ void setup()
 
 void loop()
 {
-  if (){
-  }
   delay(100);
 }
 
@@ -60,14 +50,18 @@ void loop()
 // this function is registered as an event, see setup()
 void receiveEvent(int howMany)
 {
-     digitalWrite(m_relay , LOW );
-     digitalWrite(relay_1 , LOW );
-     digitalWrite(relay_1 , LOW );
-     digitalWrite(relay_1 , LOW );
-     digitalWrite(relay_1 , LOW );
-     digitalWrite(relay_1 , LOW );digitalWrite(relay_1 , LOW );
   while (Wire.available()) // loop through all but the last
   {
+    digitalWrite(relay_1 , LOW );
+    digitalWrite(relay_2 , LOW );
+    digitalWrite(relay_3 , LOW );
+    digitalWrite(relay_4 , LOW );
+    digitalWrite(relay_5 , LOW );
+    digitalWrite(relay_6 , LOW );
+    digitalWrite(relay_7 , LOW );
+    digitalWrite(relay_8 , LOW );
+    digitalWrite(m_relay , LOW );
+    
     char c = Wire.read(); // receive byte as a character
      switch (c) {
     case S_HEIGHT_UP:
