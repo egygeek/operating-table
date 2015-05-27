@@ -7,6 +7,7 @@
 #define relay_6 7
 #define relay_7 8
 #define relay_8 9
+#define m_relay 10
 
 #define S_HEIGHT_UP 'H'
 #define S_HEIGHT_DOWN 'h'
@@ -33,6 +34,7 @@ void setup()
   pinMode(relay_6,OUTPUT);
   pinMode(relay_7,OUTPUT);
   pinMode(relay_8,OUTPUT);
+  pinMode(m_relay,OUTPUT);
   
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event
@@ -55,52 +57,64 @@ void receiveEvent(int howMany)
     case S_HEIGHT_UP:
     Serial.println(S_HEIGHT_UP);
       delay(100);
+     digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
       break;
     case S_HEIGHT_DOWN:
     Serial.println(S_HEIGHT_DOWN);
       delay(100);
+     digitalWrite(m_relay , HIGH );
      digitalWrite(relay_5 , HIGH );
      digitalWrite(relay_7 , HIGH );
       break;
     case S_TILT_UP:
+     digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
       break;
     case S_TILT_DOWN:
+     digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
       break;
     case S_FOOt_UP:
+     digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
       break;
     case S_FOOt_DOWN:
+      digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
       break;
     case S_HEAD_UP:
+      digitalWrite(m_relay , HIGH );
       digitalWrite(relay_6 , HIGH );
       digitalWrite(relay_8 , HIGH );
       break;
     case S_HEAD_DOWN:
+      digitalWrite(m_relay , HIGH );
       digitalWrite(relay_6 , HIGH );
       digitalWrite(relay_8 , HIGH );
       break;
     case S_BREAK_UP:
+      digitalWrite(m_relay , HIGH );
       digitalWrite(relay_6 , HIGH );
       digitalWrite(relay_8 , HIGH );
       break;
     case S_BREAK_DOWN:
-      digitalWrite(relay_6 , HIGH );
+     digitalWrite(m_relay , HIGH );
+     digitalWrite(relay_6 , HIGH );
       digitalWrite(relay_8 , HIGH );
       break;
     case S_ROLL_LEFT:
+      digitalWrite(m_relay , HIGH );
       digitalWrite(relay_2 , HIGH );
       digitalWrite(relay_4 , HIGH );
       break; 
     case S_ROLL_RIGHT:
+      digitalWrite(m_relay , HIGH );
       digitalWrite(relay_1 , HIGH );
       digitalWrite(relay_3 , HIGH );
       break;   
