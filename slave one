@@ -1,0 +1,115 @@
+
+#define relay_1 2
+#define relay_2 3
+#define relay_3 4
+#define relay_4 5
+#define relay_5 6
+#define relay_6 7
+#define relay_7 8
+#define relay_8 9
+
+#define S_HEIGHT_UP 'H'
+#define S_HEIGHT_DOWN 'h'
+#define S_TILT_UP 'T'
+#define S_TILT_DOWN 't'
+#define S_FOOt_UP 'F'
+#define S_FOOt_DOWN 'f'
+#define S_HEAD_UP 'D'
+#define S_HEAD_DOWN 'd'
+#define S_BREAK_UP 'B'
+#define S_BREAK_DOWN 'b'
+#define S_ROLL_LEFT 'R'
+#define S_ROLL_RIGHT 'r'
+
+#include <Wire.h>
+
+void setup()
+{
+  pinMode(relay_1,OUTPUT);
+  pinMode(relay_2,OUTPUT);
+  pinMode(relay_3,OUTPUT);
+  pinMode(relay_4,OUTPUT);
+  pinMode(relay_5,OUTPUT);
+  pinMode(relay_6,OUTPUT);
+  pinMode(relay_7,OUTPUT);
+  pinMode(relay_8,OUTPUT);
+  
+  Wire.begin(4);                // join i2c bus with address #4
+  Wire.onReceive(receiveEvent); // register event
+  Serial.begin(9600);           // start serial for output
+}
+
+void loop()
+{
+  delay(100);
+}
+
+// function that executes whenever data is received from master
+// this function is registered as an event, see setup()
+void receiveEvent(int howMany)
+{
+  while (Wire.available()) // loop through all but the last
+  {
+    char c = Wire.read(); // receive byte as a character
+     switch (c) {
+    case S_HEIGHT_UP:
+    Serial.println(S_HEIGHT_UP);
+      delay(100);
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+      break;
+    case S_HEIGHT_DOWN:
+    Serial.println(S_HEIGHT_DOWN);
+      delay(100);
+     digitalWrite(relay_5 , HIGH );
+     digitalWrite(relay_7 , HIGH );
+      break;
+    case S_TILT_UP:
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+      break;
+    case S_TILT_DOWN:
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+      break;
+    case S_FOOt_UP:
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+      break;
+    case S_FOOt_DOWN:
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+      break;
+    case S_HEAD_UP:
+      digitalWrite(relay_6 , HIGH );
+      digitalWrite(relay_8 , HIGH );
+      break;
+    case S_HEAD_DOWN:
+      digitalWrite(relay_6 , HIGH );
+      digitalWrite(relay_8 , HIGH );
+      break;
+    case S_BREAK_UP:
+      digitalWrite(relay_6 , HIGH );
+      digitalWrite(relay_8 , HIGH );
+      break;
+    case S_BREAK_DOWN:
+      digitalWrite(relay_6 , HIGH );
+      digitalWrite(relay_8 , HIGH );
+      break;
+    case S_ROLL_LEFT:
+      digitalWrite(relay_2 , HIGH );
+      digitalWrite(relay_4 , HIGH );
+      break; 
+    case S_ROLL_RIGHT:
+      digitalWrite(relay_1 , HIGH );
+      digitalWrite(relay_3 , HIGH );
+      break;   
+   // default: 
+      // if nothing else matches, do the default
+      // default is optional
+  }
+    
+   // Serial.print(c);         // print the character
+  }
+          
+}
