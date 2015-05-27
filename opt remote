@@ -1,0 +1,166 @@
+// Wire Master Writer
+// by Nicholas Zambetti <http://www.zambetti.com>
+
+// Demonstrates use of the Wire library
+// Writes data to an I2C/TWI slave device
+// Refer to the "Wire Slave Receiver" example for use with this
+
+// Created 29 March 2006
+
+// This example code is in the public domain.
+#define S_IDLE 1
+#define S_HEIGHT_UP 'H'
+#define S_HEIGHT_DOWN 'h'
+#define S_TILT_UP 'T'
+#define S_TILT_DOWN 't'
+#define S_FOOt_UP 'F'
+#define S_FOOt_DOWN 'f'
+#define S_HEAD_UP 'D'
+#define S_HEAD_DOWN 'd'
+#define S_BREAK_UP 'B'
+#define S_BREAK_DOWN 'b'
+#define S_ROLL_LEFT 'R'
+#define S_ROLL_RIGHT 'r'
+
+#include <Wire.h>
+#include <Keypad.h>
+
+int state = S_IDLE;
+
+const byte ROWS = 3; //four rows
+const byte COLS = 4; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  {'B','b','t','T'},
+  {'r','d','f','h'},
+  {'R','D','F','H'}
+};
+byte rowPins[ROWS] = {9, 10, 4}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {5, 6, 7, 8}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad remoteKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+
+
+void setup()
+{
+  Serial.begin(9600);
+  Wire.begin(); // join i2c bus (address optional for master)
+}
+
+byte x = 0;
+
+void loop()
+{
+   char remoteKey = remoteKeypad.getKey();
+ 
+  
+     switch (remoteKey) {
+    case S_HEIGHT_UP:
+      Serial.println(S_HEIGHT_UP);
+      delay(100);
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_HEIGHT_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_HEIGHT_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      break;
+    case S_HEIGHT_DOWN:
+      Serial.println(S_HEIGHT_DOWN);
+      delay(100);
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      break;
+    case S_TILT_UP:
+    
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_TILT_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_TILT_UP);        // sends five bytes
+      Wire.endTransmission(); 
+      break;
+    case S_TILT_DOWN:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_TILT_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_TILT_DOWN);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_FOOt_UP:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_FOOt_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_FOOt_UP);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_FOOt_DOWN:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_FOOt_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_FOOt_DOWN);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_HEAD_UP:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_HEAD_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_HEAD_UP);        // sends five bytes
+      Wire.endTransmission(); 
+      break;
+    case S_HEAD_DOWN:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_HEAD_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_HEAD_DOWN);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_BREAK_UP:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_BREAK_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_BREAK_UP);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_BREAK_DOWN:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_BREAK_DOWN);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_BREAK_DOWN);        // sends five bytes
+      Wire.endTransmission();
+      break;
+    case S_ROLL_LEFT:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_ROLL_LEFT);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_ROLL_LEFT);        // sends five bytes
+      Wire.endTransmission(); 
+      break; 
+    case S_ROLL_RIGHT:
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_ROLL_RIGHT);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_ROLL_RIGHT);        // sends five bytes
+      Wire.endTransmission(); 
+      break;   
+   // default: 
+      // if nothing else matches, do the default
+      // default is optional
+  }
+    
+  } 
+ 
