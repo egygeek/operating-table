@@ -40,7 +40,8 @@ byte colPins[COLS] = {5, 6, 7, 8}; //connect to the column pinouts of the keypad
 
 //initialize an instance of class NewKeypad
 Keypad remoteKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
-
+char holdKey;
+unsigned long t_hold;
 
 void setup()
 {
@@ -53,9 +54,15 @@ byte x = 0;
 void loop()
 {
    char remoteKey = remoteKeypad.getKey();
- 
+ if (remotekey){
+     holdKey = remoteKey;
+     Serial.println(remoteKey);
+   }
   
-     switch (remoteKey) {
+   if (remoteKeypad.getState() == HOLD) {
+      if ((millis() - t_hold) > 100 ) {
+  
+     switch (holdKey) {
     case S_HEIGHT_UP:
       Serial.println(S_HEIGHT_UP);
       delay(100);
@@ -161,6 +168,8 @@ void loop()
       // if nothing else matches, do the default
       // default is optional
   }
-    
+    t_hold = millis();
+    }
+    }
   } 
  
