@@ -52,7 +52,7 @@ void loop()
     digitalWrite(relay_7 , LOW );
     digitalWrite(relay_8 , LOW );
     digitalWrite(m_relay , LOW );
-  delay(100);
+  //delay(100);
 }
 
 // function that executes whenever data is received from master
