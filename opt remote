@@ -1,11 +1,7 @@
-// Wire Master Writer
-// by Nicholas Zambetti <http://www.zambetti.com>
+// operating table controller
+// by Amr Mohamed
 
-// Demonstrates use of the Wire library
-// Writes data to an I2C/TWI slave device
-// Refer to the "Wire Slave Receiver" example for use with this
-
-// Created 29 March 2006
+// Created  31 May 2015
 
 // This example code is in the public domain.
 #define S_IDLE 1
