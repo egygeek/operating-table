@@ -9,6 +9,11 @@
 #define relay_8 9
 #define m_relay 10
 
+#define mSwitch_height_up 11
+#define mSwitch_height_down 12
+#define mSwitch_tilt_up 13
+#define mSwitch_tilt_down A0
+
 #define S_HEIGHT_UP 'H'
 #define S_HEIGHT_DOWN 'h'
 #define S_TILT_UP 'T'
@@ -35,6 +40,10 @@ void setup()
   pinMode(relay_7,OUTPUT);
   pinMode(relay_8,OUTPUT);
   pinMode(m_relay,OUTPUT);
+  pinMode(mSwitch_height_up ,INPUT);
+  pinMode(mSwitch_height_down ,INPUT);
+  pinMode(mSwitch_tilt_up ,INPUT);
+  pinMode(mSwitch_tilt_down ,INPUT);
   
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event
@@ -53,6 +62,31 @@ void loop()
     digitalWrite(relay_8 , LOW );
     digitalWrite(m_relay , LOW );
   //delay(100);
+  
+if(digitalRead(mSwitch_height_up == HIGH)){
+     Serial.println(S_HEIGHT_UP);
+      delay(100);
+     digitalWrite(m_relay , HIGH );
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );;
+  }
+  if(digitalRead(mSwitch_height_down == HIGH)){
+     Serial.println(S_HEIGHT_DOWN);
+      delay(100);
+     digitalWrite(m_relay , HIGH );
+     digitalWrite(relay_5 , HIGH );
+     digitalWrite(relay_7 , HIGH );
+  }
+  if(digitalRead(mSwitch_tilt_up == HIGH)){
+     digitalWrite(m_relay , HIGH );
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+  }
+  if(digitalRead(mSwitch_tilt_down == HIGH)){
+     digitalWrite(m_relay , HIGH );
+     digitalWrite(relay_6 , HIGH );
+     digitalWrite(relay_8 , HIGH );
+  }
 }
 
 // function that executes whenever data is received from master
