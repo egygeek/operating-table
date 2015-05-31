@@ -72,13 +72,32 @@ void loop()
      digitalWrite(relay_16 , HIGH );
   }
   if(digitalRead(mSwitch_height_down == HIGH)){
-  
+     Serial.println(S_HEIGHT_DOWN);
+     delay(100);
+     digitalWrite(relay_11 , HIGH );
+     digitalWrite(relay_12 , HIGH );
+     digitalWrite(relay_15 , HIGH );
+     digitalWrite(relay_16 , HIGH );
   }
   if(digitalRead(mSwitch_tilt_up == HIGH)){
-  
+     Serial.println(S_TILT_UP);
+     delay(100);
+     digitalWrite(relay_10 , HIGH );
+     digitalWrite(relay_11 , HIGH );
+     digitalWrite(relay_12 , HIGH );
+     digitalWrite(relay_13 , HIGH );
+     digitalWrite(relay_15 , HIGH );
+     digitalWrite(relay_16 , HIGH );
   }
   if(digitalRead(mSwitch_tilt_down == HIGH)){
-  
+     Serial.println(S_TILT_DOWN);
+     delay(100);
+     digitalWrite(relay_9 , HIGH );
+     digitalWrite(relay_11 , HIGH );
+     digitalWrite(relay_12 , HIGH );
+     digitalWrite(relay_14 , HIGH );
+     digitalWrite(relay_15 , HIGH );
+     digitalWrite(relay_16 , HIGH );
   }
 }
 
