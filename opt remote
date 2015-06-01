@@ -49,7 +49,7 @@ void setup()
 void loop()
 {
    char remoteKey = remoteKeypad.getKey();
- if (remotekey){
+ if (remoteKey){
      holdKey = remoteKey;
      Serial.println(remoteKey);
    }
