@@ -78,11 +78,15 @@ if(digitalRead(mSwitch_height_up == HIGH)){
      digitalWrite(relay_7 , HIGH );
   }
   if(digitalRead(mSwitch_tilt_up == HIGH)){
+     Serial.println(S_TILT_UP);
+      delay(100);
      digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
   }
   if(digitalRead(mSwitch_tilt_down == HIGH)){
+     Serial.println(S_TILT_DOWN);
+      delay(100);
      digitalWrite(m_relay , HIGH );
      digitalWrite(relay_6 , HIGH );
      digitalWrite(relay_8 , HIGH );
