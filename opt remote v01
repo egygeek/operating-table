@@ -1,0 +1,252 @@
+// operating table controller
+// by Amr Mohamed
+
+// Created  31 May 2015
+
+#define S_IDLE 'I'
+#define S_HAND_CONTROL 'C'
+#define S_MICRO 'M'
+#define S_HEIGHT_UP 'H'
+#define S_HEIGHT_DOWN 'h'
+#define S_TILT_UP 'T'
+#define S_TILT_DOWN 't'
+#define S_FOOT_UP 'F'
+#define S_FOOT_DOWN 'f'
+#define S_HEAD_UP 'D'
+#define S_HEAD_DOWN 'd'
+#define S_BREAK_UP 'B'
+#define S_BREAK_DOWN 'b'
+#define S_ROLL_LEFT 'R'
+#define S_ROLL_RIGHT 'r'
+
+#include <Wire.h>
+#include <Keypad.h>
+
+int state = S_IDLE;
+
+const byte ROWS = 4; //four rows
+const byte COLS = 5; //four columns
+//define the cymbols on the buttons of the keypads
+char keys[ROWS][COLS] = {
+  {'B','b','t','T'},
+  {'r','d','f','h'},
+  {'R','D','F','H'},
+  { ' ',' ' ,' ' ,' ','C'}
+};
+byte rowPins[ROWS] = {9, 10, 4, 11}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {5, 6, 7, 8, 12}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad remoteKeypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS ); 
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  Wire.begin(); // join i2c bus (address optional for master)
+  remoteKeypad.addEventListener(keypadEvent);
+}
+
+
+
+void loop()
+{
+   char remoteKey = remoteKeypad.getKey();
+ if (remoteKey){
+    
+     Serial.println(remoteKey);
+   }
+
+  } 
+  void keypadEvent(KeypadEvent remoteKey){
+    switch (remoteKeypad.getState()){
+    case PRESSED:
+      if (remoteKey == S_HAND_CONTROL) {
+    
+        Serial.println(S_HAND_CONTROL);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_HAND_CONTROL);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_HAND_CONTROL);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+      if (remoteKey == S_HEIGHT_UP) {
+      
+        Serial.println(S_HEIGHT_UP);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_HEIGHT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_HEIGHT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+      if (remoteKey == S_HEIGHT_DOWN) {
+      
+        Serial.println(S_HEIGHT_DOWN);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_TILT_UP) {
+      
+        Serial.println(S_TILT_UP);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_TILT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_TILT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_TILT_DOWN) {
+      
+        Serial.println(S_TILT_DOWN);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_TILT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_TILT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_FOOT_UP) {
+      
+        Serial.println(S_FOOT_UP);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_FOOT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_FOOT_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_FOOT_DOWN) {
+      
+        Serial.println(S_FOOT_DOWN);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_FOOT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_FOOT_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_HEAD_UP) {
+      
+        Serial.println(S_HEAD_UP);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_HEAD_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_HEAD_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_HEAD_DOWN) {
+      
+        Serial.println(S_HEAD_DOWN);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_HEAD_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_HEAD_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_BREAK_UP) {
+      
+        Serial.println(S_BREAK_UP);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_BREAK_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_BREAK_UP);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_BREAK_DOWN) {
+      
+        Serial.println(S_BREAK_DOWN);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_BREAK_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_BREAK_DOWN);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_ROLL_LEFT) {
+      
+        Serial.println(S_ROLL_LEFT);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_ROLL_LEFT);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_ROLL_LEFT);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          if (remoteKey == S_ROLL_RIGHT) {
+      
+        Serial.println(S_ROLL_RIGHT);
+        //delay(100);
+        Wire.beginTransmission(4); // transmit to device #4
+        Wire.write(S_ROLL_RIGHT);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+        Wire.beginTransmission(5); // transmit to device #4
+        Wire.write(S_ROLL_RIGHT);        // sends five bytes
+        Wire.endTransmission();    // stop transmitting
+                // Remember LED state, lit or unlit.
+          }
+          
+        break;
+
+    case RELEASED:
+         //if (remoteKey == S_HEIGHT_UP) {
+            Serial.println(S_IDLE);
+      //delay(100);
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_IDLE);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_IDLE);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      
+        break;
+
+    case HOLD:
+        if (remoteKey == S_HEIGHT_UP) {
+            Serial.println(S_HEIGHT_UP);
+      //delay(100);
+      Wire.beginTransmission(4); // transmit to device #4
+      Wire.write(S_HEIGHT_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+      Wire.beginTransmission(5); // transmit to device #4
+      Wire.write(S_HEIGHT_UP);        // sends five bytes
+      Wire.endTransmission();    // stop transmitting
+              // Remember LED state, lit or unlit.
+        }
+        break;
+    }
+}
+ 
