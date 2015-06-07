@@ -1,0 +1,114 @@
+// by Amr Mohamed
+
+// Created  31 May 2015
+
+#define S_IDLE 'I'
+#define S_HAND_CONTROL 'C'
+#define S_MICRO 'M'
+#define S_HEIGHT_UP 'H'
+#define S_HEIGHT_DOWN 'h'
+#define S_TILT_UP 'T'
+#define S_TILT_DOWN 't'
+#define S_FOOT_UP 'F'
+#define S_FOOT_DOWN 'f'
+#define S_HEAD_UP 'D'
+#define S_HEAD_DOWN 'd'
+#define S_BREAK_UP 'B'
+#define S_BREAK_DOWN 'b'
+#define S_ROLL_LEFT 'R'
+#define S_ROLL_RIGHT 'r'
+
+#define mSwitch_hieght_up 2
+#define mSwitch_hieght_down 3
+#define mSwitch_tilt_up 4
+#define mSwitch_tilt_down 5
+
+#include <Wire.h>
+
+
+//int state = S_IDLE;
+
+
+
+
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  Wire.begin(); // join i2c bus (address optional for master)
+  pinMode(mSwitch_hieght_up,INPUT);
+  pinMode(mSwitch_hieght_down,INPUT);
+  pinMode(mSwitch_tilt_up,INPUT);
+  pinMode(mSwitch_tilt_down,INPUT);
+  
+  
+}
+
+
+
+void loop()
+{
+  if(digitalRead(mSwitch_hieght_up)==HIGH){
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_HEIGHT_UP);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_HEIGHT_UP);        // sends five bytes
+     Wire.endTransmission(); 
+  }else{
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission(); 
+  }
+  if(digitalRead(mSwitch_hieght_down)==HIGH){
+    Wire.beginTransmission(4); // transmit to device #4
+    Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+    Wire.endTransmission();    // stop transmitting
+    Wire.beginTransmission(5); // transmit to device #4
+    Wire.write(S_HEIGHT_DOWN);        // sends five bytes
+    Wire.endTransmission(); 
+    }else{
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission(); 
+  }
+  if(digitalRead(mSwitch_tilt_up)==HIGH){
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_TILT_UP);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_TILT_UP);        // sends five bytes
+     Wire.endTransmission(); 
+  }else{
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission(); 
+  }
+  if(digitalRead(mSwitch_tilt_down)==HIGH){
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_TILT_DOWN);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_TILT_DOWN);        // sends five bytes
+     Wire.endTransmission(); 
+  }else{
+     Wire.beginTransmission(4); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission();    // stop transmitting
+     Wire.beginTransmission(5); // transmit to device #4
+     Wire.write(S_IDLE);        // sends five bytes
+     Wire.endTransmission(); 
+  }
+
+}
