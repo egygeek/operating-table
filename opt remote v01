@@ -66,13 +66,9 @@ void loop()
     
         Serial.println(S_HAND_CONTROL);
         //delay(100);
-        Wire.beginTransmission(4); // transmit to device #4
+        Wire.beginTransmission(2); // transmit to device #4
         Wire.write(S_HAND_CONTROL);        // sends five bytes
         Wire.endTransmission();    // stop transmitting
-        Wire.beginTransmission(5); // transmit to device #4
-        Wire.write(S_HAND_CONTROL);        // sends five bytes
-        Wire.endTransmission();    // stop transmitting
-                // Remember LED state, lit or unlit.
           }
       if (remoteKey == S_HEIGHT_UP) {
       
