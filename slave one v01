@@ -83,7 +83,13 @@ void receiveEvent(int howMany)
       Serial.println(S_IDLE);
       //delay(100);
      digitalWrite(m_relay , LOW );
+     digitalWrite(relay_1 , LOW );
+     digitalWrite(relay_2 , LOW );
+     digitalWrite(relay_3 , LOW );
+     digitalWrite(relay_4 , LOW );
+     digitalWrite(relay_5 , LOW );
      digitalWrite(relay_6 , LOW );
+     digitalWrite(relay_7 , LOW );
      digitalWrite(relay_8 , LOW );
       break;
     case S_HEIGHT_UP:
