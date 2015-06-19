@@ -1,0 +1,106 @@
+
+#define IA2 10
+#define IB2 11
+
+#define IA1 5
+#define IB1 6
+
+#define x_axis A0
+#define y_axis A1
+#define DIR_BUTTON 7
+
+#define Motor_B_PWM IA2
+#define Motor_B_DIR IB2
+#define Motor_B_FORWARD 'B'
+#define Motor_B_BACKWARD 'b'
+
+#define Motor_A_PWM IA1
+#define Motor_A_DIR IB1
+#define Motor_A_FORWARD 'A'
+#define Motor_A_BACKWARD 'a'
+
+#define PWM_SLOW 100
+#define PWM_FAST 200
+#define DIR_DELAY 1000
+
+int MOTOR_A_SPEED =0;
+int MOTOR_B_SPEED =0;
+
+void setup()
+{
+ Serial.begin(9600);
+ 
+ pinMode(x_axis,INPUT);
+ pinMode(y_axis,INPUT);
+ pinMode(DIR_BUTTON,INPUT);
+ 
+ pinMode(Motor_B_PWM,OUTPUT);
+ pinMode(Motor_B_DIR,OUTPUT);
+ digitalWrite(Motor_B_PWM,LOW);
+ digitalWrite(Motor_B_DIR,LOW);
+
+ pinMode(Motor_A_PWM,OUTPUT);
+ pinMode(Motor_A_DIR,OUTPUT);
+ digitalWrite(Motor_A_PWM,LOW);
+ digitalWrite(Motor_A_DIR,LOW);
+}
+
+void loop()
+{
+char motor;
+int x_value = analogRead(x_axis);
+int y_value = analogRead(y_axis);
+
+if(x_value >= 520){
+  motor = Motor_A_FORWARD;
+}
+if(x_value <= 500){
+  motor = Motor_A_BACKWARD;
+}
+if(y_value >= 520){
+  motor = Motor_B_FORWARD;
+}
+if(y_value <= 500){
+  motor = Motor_B_BACKWARD;
+}
+int x_ratio = abs(x_value - 512); 
+int y_ratio = abs(y_value - 512);
+
+
+switch(motor)
+{
+  case Motor_A_FORWARD:
+    Serial.println("Motor A Forward");
+    digitalWrite(Motor_A_DIR,LOW);
+    digitalWrite(Motor_A_PWM,LOW);
+    delay(DIR_DELAY);
+    digitalWrite(Motor_A_DIR,HIGH);
+    analogWrite(Motor_A_PWM,MOTOR_A_SPEED);
+    break;
+  case Motor_A_BACKWARD:
+    Serial.println("Motor A backword");
+    digitalWrite(Motor_A_DIR,LOW);
+    digitalWrite(Motor_A_PWM,LOW);
+    delay(DIR_DELAY);
+    digitalWrite(Motor_A_DIR,LOW);
+    analogWrite(Motor_A_PWM,MOTOR_A_SPEED);
+    break;
+  case Motor_B_FORWARD:
+    Serial.println("Motor B Forward");
+    digitalWrite(Motor_B_DIR,LOW);
+    digitalWrite(Motor_B_PWM,LOW);
+    delay(DIR_DELAY);
+    digitalWrite(Motor_B_DIR,HIGH);
+    analogWrite(Motor_B_PWM,MOTOR_B_SPEED);
+    break;
+  case Motor_B_BACKWARD:
+    Serial.println("Motor B backword");
+    digitalWrite(Motor_B_DIR,LOW);
+    digitalWrite(Motor_B_PWM,LOW);
+    delay(DIR_DELAY);
+    digitalWrite(Motor_B_DIR,LOW);
+    analogWrite(Motor_B_PWM,MOTOR_B_SPEED);
+    break;
+  
+}
+}
